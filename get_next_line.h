@@ -6,7 +6,7 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:27:03 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/15 19:34:19 by svereten         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:08:58 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GET_NEXT_LINE_H
@@ -21,7 +21,7 @@
 # include <unistd.h>
 
 size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char *buf, char const *aux);
+char	*ft_strjoin(char *fd_buf, char *aux);
 char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
 
