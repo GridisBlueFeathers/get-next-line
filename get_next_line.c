@@ -6,11 +6,16 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:25:04 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/16 19:57:20 by svereten         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:31:54 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
-#include <string.h>
+
+void	free_fd_buf(char **fd_buf)
+{
+	free(*fd_buf);
+	*fd_buf = NULL;
+}
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -41,7 +46,7 @@ char	*ft_strjoin(char *fd_buf, char *aux)
 	len = fd_buf_len + ft_strlen(aux);
 	res = (char *)malloc((len + 1) * sizeof(char));
 	if (!res)
-		return (NULL);
+		return (free_fd_buf(&fd_buf), NULL);
 	i = 0;
 	while (fd_buf && fd_buf[i])
 	{
@@ -54,7 +59,7 @@ char	*ft_strjoin(char *fd_buf, char *aux)
 		i++;
 	}
 	res[i] = '\0';
-	return (free(fd_buf), res);
+	return (free_fd_buf(&fd_buf), res);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -98,7 +103,7 @@ char	*get_next_output(char *fd_buf)
 	if (!nl_location)
 	{
 		res = ft_substr(fd_buf, 0, ft_strlen(fd_buf));
-		if (!ft_strlen(res))
+		if (!res || !ft_strlen(res))
 			return (free(res), NULL);
 		return (res);
 	}
@@ -117,12 +122,12 @@ char	*remove_output(char *fd_buf)
 		return (NULL);
 	nl_location = ft_strchr(fd_buf, '\n');
 	if (!nl_location)
-		return (free(fd_buf), NULL);
-	nnl_index = ft_strchr(fd_buf, '\n') - fd_buf;
+		return (free_fd_buf(&fd_buf), NULL);
+	nnl_index = nl_location - fd_buf;
 	if (!fd_buf[nnl_index + 1])
-		return (free(fd_buf), NULL);
+		return (free_fd_buf(&fd_buf), NULL);
 	res = ft_substr(fd_buf, nnl_index + 1, ft_strlen(fd_buf) - nnl_index - 1);
-	return (free(fd_buf), res);
+	return (free_fd_buf(&fd_buf), res);
 }
 
 char	*get_next_line(int fd)
@@ -140,8 +145,9 @@ char	*get_next_line(int fd)
 	while (!ft_strchr(fd_buf, '\n') && bytes_read)
 	{
 		bytes_read = read(fd, aux_buf, BUFFER_SIZE);
+		printf("fd_buf %s\n", fd_buf);
 		if (bytes_read == -1)
-			return (free(aux_buf), NULL);
+			return (free(aux_buf), free_fd_buf(&fd_buf), NULL);
 		aux_buf[bytes_read] = '\0';
 		fd_buf = ft_strjoin(fd_buf, aux_buf);
 	}
@@ -155,7 +161,7 @@ char	*get_next_line(int fd)
 int main()
 {
 	char *res;
-	int fd = open("./test-files/41_no_nl", O_RDONLY);
+	int fd = open("./file_to_read", O_RDONLY);
 	res = get_next_line(fd);
 	while (res)
 	{
@@ -165,12 +171,30 @@ int main()
 			printf("%d\n", res[i]);
 			i++;
 		}
-		printf("%s\n", res);
+		printf("line is %s\n", res);
 		free(res);
 		res = get_next_line(fd);
 	}
-	//printf("%s\n", res);
+	printf("line is %s\n", res);
 	free(res);
+	close(fd);
+	fd = open("./test-files/41_no_nl", O_RDONLY);
+	res = get_next_line(fd);
+	while (res)
+	{
+		int i = 0;
+		while (0)
+		{
+			printf("%d\n", res[i]);
+			i++;
+		}
+		printf("line is %s\n", res);
+		free(res);
+		res = get_next_line(fd);
+	}
+	printf("line is %s\n", res);
+	free(res);
+
 	//get_next_line(3);
 	//get_next_line(3);
 }*/
