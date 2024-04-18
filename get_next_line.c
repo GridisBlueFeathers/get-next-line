@@ -6,18 +6,12 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:25:04 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:01 by svereten         ###   ########.fr       */
+/*   Updated: 2024/04/18 10:35:02 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-void	free_fd_buf(char **fd_buf)
-{
-	free(*fd_buf);
-	*fd_buf = NULL;
-}
-
-char	*get_next_output(char *fd_buf)
+static char	*get_next_output(char *fd_buf)
 {
 	char	*res;
 	char	*nl_location;
@@ -38,7 +32,7 @@ char	*get_next_output(char *fd_buf)
 	return (res);
 }
 
-char	*remove_output(char *fd_buf, char *aux_buf)
+static char	*remove_output(char *fd_buf, char *aux_buf)
 {
 	char	*res;
 	char	*nl_location;

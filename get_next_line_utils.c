@@ -6,10 +6,16 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 16:06:16 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/18 10:31:15 by svereten         ###   ########.fr       */
+/*   Updated: 2024/04/18 10:34:27 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
+
+void	free_fd_buf(char **fd_buf)
+{
+	free(*fd_buf);
+	*fd_buf = NULL;
+}
 
 size_t	ft_strlen(const char *s)
 {
