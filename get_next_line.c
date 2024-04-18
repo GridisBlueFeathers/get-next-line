@@ -6,7 +6,7 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:25:04 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/17 19:41:31 by svereten         ###   ########.fr       */
+/*   Updated: 2024/04/18 10:31:01 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -82,7 +82,7 @@ char	*get_next_line(int fd)
 	return (aux_buf);
 }
 
-#include <fcntl.h>
+/*#include <fcntl.h>
 int main()
 {
 	char *res;
@@ -106,4 +106,4 @@ int main()
 
 	//get_next_line(3);
 	//get_next_line(3);
-}
+}*/

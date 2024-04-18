@@ -6,7 +6,7 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 16:06:16 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/17 19:08:55 by svereten         ###   ########.fr       */
+/*   Updated: 2024/04/18 10:31:15 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -70,7 +70,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	new_len;
 	unsigned int	i;
 	size_t			s_len;
-	//static int count = 0;
 
 	if (!s)
 		return (NULL);
@@ -81,9 +80,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		new_len = s_len - start;
 	else
 		new_len = len;
-	/*if (count == 5)
-		return NULL;
-	count++;*/
 	res = (char *)malloc((new_len + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
