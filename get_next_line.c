@@ -6,7 +6,7 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:25:04 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/18 10:35:02 by svereten         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:37:45 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -75,29 +75,3 @@ char	*get_next_line(int fd)
 	fd_buf = remove_output(fd_buf, aux_buf);
 	return (aux_buf);
 }
-
-/*#include <fcntl.h>
-int main()
-{
-	char *res;
-	int fd = open("./multiple_nl.txt", O_RDONLY);
-	res = get_next_line(fd);
-	int i = 0;
-	while (i < 5)
-	{
-		while (0)
-		{
-			printf("%d\n", res[i]);
-			i++;
-		}
-		printf("line is %s\n", res);
-		free(res);
-		res = get_next_line(fd);
-		i++;
-	}
-	printf("line is %s\n", res);
-	free(res);
-
-	//get_next_line(3);
-	//get_next_line(3);
-}*/
