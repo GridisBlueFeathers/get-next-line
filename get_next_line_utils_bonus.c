@@ -6,10 +6,10 @@
 /*   By: svereten <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:51:48 by svereten          #+#    #+#             */
-/*   Updated: 2024/04/18 13:52:06 by svereten         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:29:33 by svereten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	free_fd_buf(char **fd_buf)
 {
